@@ -1,0 +1,6 @@
+a = int(input("a = "))
+b = int(input("b = "))
+c = int(input("c = "))
+print("sum : ", a + b + c)
+print("product : ", a * b * c)
+print("average : ", (a + b + c) / 3)
