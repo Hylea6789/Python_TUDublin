@@ -1,4 +1,6 @@
 # Sean GRIFFIN 31/01/23
-x = float(input("enter a value for x : "))
-y = (1 + (2 + x)**2)/2
-print("x =", x, "=> y =", y)
+my_string = "HELLO LES GENS"
+
+length = len(my_string)
+last_char = my_string[-1]
+print(last_char)
