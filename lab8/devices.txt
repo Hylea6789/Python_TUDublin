@@ -1,0 +1,10 @@
+W9001  80 euro
+W9007  24 euro
+W9005  45 euro
+W9017  55 euro
+W9078  61 euro
+W9033  99 euro
+W9043  29 euro
+W9027  33 euro
+W9123  123 euro
+W9028  103 euro

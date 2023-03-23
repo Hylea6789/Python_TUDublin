@@ -23,7 +23,7 @@ def write_file():
 
 
 def write_file_john():
-    # open a file in appen mode => new data will be added at the end of the file
+    # open a file in append mode => new data will be added at the end of the file
     file_to_write = open("name.txt", "a")
 
     # writes John Doe at the end of the file

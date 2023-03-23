@@ -23,7 +23,8 @@ with open("students.txt", "r") as student_file:
         # if the mark read is superior to all previous marks, it is the new maximum
         if mark > maximum:
             maximum = mark
+            # stores the student, it's field and note in max_student
             max_student = line.replace(",", " ")
 
 # displays the new maximum
-print("the maximum is", max_student)
+print("Max student :", max_student)
