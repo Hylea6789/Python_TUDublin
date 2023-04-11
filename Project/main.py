@@ -12,71 +12,33 @@ FILE_REPORT = "report.csv"
 def main():
     # main function
 
-    # generate the file containing all of the IP addresses
+    # generates the file containing all of the IP addresses
     generate_ip_file()
-    # generate the report file
+    # generates the report file
     generate_report()
 
 
 def generate_ip_file():
-    # generate a text file containing all of the IP addresses
+    # Generate a text file containing all of the IP addresses
 
-    # open ddos log file in read mode
+    # Open DDOS log file in read mode
     file_ddos = open(FILE_DDOS, "r")
-    # open ip file in write mod, we will write here each ip address
+
+    # We will write each ip address in a text file
+    # Open the ip file in write mod
     file_ip = open(FILE_IP, "w")
 
-    # reads every lines in file_ddos and extract IP address
+    # Reads every lines in file_ddos and extract each IP address
     for line in file_ddos:
         # splits the list on character "[" and take the third item
         # splits the list on character " " and take the third item
-        # writes the IP address extracted on a new line in the file
+        # writes the IP address extracted. Finishes the file with the character "\n"
         file_ip.write((line.split("]")[2].split(" ")[2] + "\n"))
 
     # closes ddos log file
     file_ddos.close()
     # closes ip file
     file_ip.close()
-
-
-def class_ip(ip_address):
-    # returns the class of an IP address
-
-    # extract the first octet of the IP address
-    first_octet = int(ip_address.split(".")[0])
-
-    # Checks if class A
-    if first_octet <= 127:
-        ip_class = "A"
-    # Checks if class B
-    elif first_octet <= 191:
-        ip_class = "B"
-    # Checks if class C
-    elif first_octet <= 223:
-        ip_class = "C"
-    # Checks if class D
-    elif first_octet <= 239:
-        ip_class = "D"
-    # Checks if class E
-    else:
-        ip_class = "E"
-
-    # returns the class of the IP address
-    return ip_class
-
-
-def whois_ip(ip_address):
-    # return the country and description of an IP address thanks to whois command
-
-    # create an IPWhois object with ip address parameter
-    ip = IPWhois(ip_address)
-
-    # uses the method lookup_rdap() of an IPWhois object
-    # returns a dictionary containing the whois command result
-    ip_whois = ip.lookup_rdap()
-
-    # ip_whois result is stored in a dictionary, we just need to retrieve the country code and description from it
-    return ip_whois["asn_country_code"], ip_whois["asn_description"]
 
 
 def generate_report():
@@ -107,6 +69,45 @@ def generate_report():
     file_ip.close()
     # closes report file
     file_report.close()
+
+def class_ip(ip_address):
+    # returns the class of an IP address
+
+    # extract the first octet of the IP address
+    first_octet = int(ip_address.split(".")[0])
+
+    # Checks if class A
+    if first_octet <= 127:
+        ip_class = "A"
+    # Checks if class B
+    elif first_octet <= 191:
+        ip_class = "B"
+    # Checks if class C
+    elif first_octet <= 223:
+        ip_class = "C"
+    # Checks if class D
+    elif first_octet <= 239:
+        ip_class = "D"
+    # Checks if class E
+    else:
+        ip_class = "E"
+
+    # returns the class of the IP address
+    return ip_class
+
+
+def whois_ip(ip_address):
+    # return the country and description of an IP address thanks to whois command
+    print(ip_address)
+    # create an IPWhois object with ip address as parameter
+    ip = IPWhois(ip_address)
+
+    # uses the method lookup_rdap() of an IPWhois object
+    # returns a dictionary containing the whois command result in JSON format.
+    ip_whois = ip.lookup_rdap()
+
+    # ip_whois result is stored in a dictionary, we just need to retrieve the country code and description from it
+    return ip_whois["asn_country_code"], ip_whois["asn_description"]
 
 
 if __name__ == '__main__':

@@ -13,6 +13,8 @@ GRADE_GUIDE = {
     "Fail": (0, 39)
 }
 
+# student file name
+STUDENT_FILE_NAME = "studentMarks.txt"
 
 class Student:
 
@@ -59,10 +61,26 @@ class Student:
             self.__marks) + "}"
 
 
-student = Student("Sean", "Griffin")
-student.add_mark(5)
-student.add_mark(45)
-student.add_mark(58)
-student.add_mark(64)
-student.add_mark(77)
-print(student)
+if __name__ == '__main__':
+    student_list = []
+    # opens the file in read mode
+    student_file = open(STUDENT_FILE_NAME, 'r')
+    # skips header line
+    student_file.readline()
+
+    # for each lines of the file
+    for line in student_file:
+        # splits the line at each commas, permits to have a list with each value to add
+        line_split = line.split(",")
+
+        # initialize the student
+        student = Student(line_split[0], line_split[1])
+
+        # for the 3 marks
+        for i in range(2, 5):
+            student.add_mark(int(line_split[i]))
+        student_list.append(student)
+
+    for student in student_list:
+        print(student)
+
